@@ -8,8 +8,8 @@
 # * http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci
 ###############################################################################
 
-FROM jenkins:2.7.1
-MAINTAINER Alejandro Ricoveri <alejandroricoveri@gmail.com>
+FROM jenkins:2.19.2
+MAINTAINER CPF
 
 # Install necessary packages
 USER root
@@ -23,7 +23,7 @@ RUN apt-get update \
 # "Former versions of this post advised to bind-mount the docker binary from
 # the host to the container. This is not reliable anymore, because the Docker
 # Engine is no longer distributed as (almost) static libraries."
-ARG docker_version=1.11.2
+ARG docker_version=1.12.2
 RUN curl -sSL https://get.docker.com/ | sh && \
     apt-get purge -y docker-engine && \
     apt-get install docker-engine=${docker_version}-0~jessie
