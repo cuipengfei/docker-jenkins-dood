@@ -31,14 +31,6 @@ RUN curl -sSL https://get.docker.com/ | sh && \
 # Make sure jenkins user has docker privileges
 RUN usermod -aG docker jenkins
 
-# Install initial plugins
-USER jenkins
-COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
-
-# supervisord
-USER root
-
 # Create log folder for supervisor and jenkins
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /var/log/jenkins
